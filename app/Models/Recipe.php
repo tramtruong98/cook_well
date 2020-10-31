@@ -13,6 +13,8 @@ class Recipe extends Model
         'cate_id',
         'course_id',
         'title',
+        'minutes',
+        'ingredients',
         'description',
         'author',
     ];

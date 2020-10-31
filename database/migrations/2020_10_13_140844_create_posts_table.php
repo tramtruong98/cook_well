@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('recipe_id');
+            $table->text('image')->nullable();
             $table->boolean('home_flag')->default(0);
             $table->boolean('blog_flag')->default(0);
             $table->integer('rate')->unsigned();

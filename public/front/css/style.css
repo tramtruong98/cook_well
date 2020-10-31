@@ -8491,7 +8491,7 @@ h1, h2, h3, h4, h5,
   background: #ffe6eb !important; }
 
 .bg-color-1 {
-  background: #e4b2d6; }
+  background: #b6e4b2; }
 
 .bg-color-2 {
   background: #dcc698; }
@@ -8500,7 +8500,13 @@ h1, h2, h3, h4, h5,
   background: #a2d1e1; }
 
 .bg-color-4 {
-  background: #dcd691; }
+  background: #f1867e; }
+
+.bg-color-5 {
+  background: #dddb56; }
+
+.bg-color-6 {
+  background: #f7a0eb; }
 
 .btn {
   cursor: pointer;

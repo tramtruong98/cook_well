@@ -17,11 +17,11 @@ class CreateRecipesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cate_id');
             $table->unsignedBigInteger('course_id');
-            $table->string('title')->nullable();
+            $table->text('title')->nullable();
             $table->integer('minutes');
-            $table->string('ingredients')->nullable();
-            $table->string('description')->nullable();
-            $table->integer('author')->unique();
+            $table->text('ingredients')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('author')->unique()->nullable();
             $table->timestamps();
             $table->foreign('cate_id')->references('id')->on('categories');
             $table->foreign('course_id')->references('id')->on('courses');
