@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 31/10/2020 07:56
+    Creation date: 31/10/2020 16:55
     */
 
     @font-face {
@@ -43,6 +43,8 @@
 .flaticon-salad:before { content: "\f103"; }
 .flaticon-cereal:before { content: "\f104"; }
 .flaticon-cheese:before { content: "\f105"; }
+.flaticon-wall-clock:before { content: "\f106"; }
+.flaticon-heart-shape-outline:before { content: "\f107"; }
     
     $font-Flaticon-coffee-cup: "\f100";
     $font-Flaticon-woman: "\f101";
@@ -50,3 +52,5 @@
     $font-Flaticon-salad: "\f103";
     $font-Flaticon-cereal: "\f104";
     $font-Flaticon-cheese: "\f105";
+    $font-Flaticon-wall-clock: "\f106";
+    $font-Flaticon-heart-shape-outline: "\f107";

@@ -8,7 +8,16 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
-
+      <div class="col-lg-4 sidebar ftco-animate">
+      <div class="sidebar-box">
+        <form action="#" class="search-form">
+          <div class="form-group">
+            <span class="icon ion-ios-search"></span>
+            <input type="text" class="form-control" placeholder="Search...">
+          </div>
+        </form>
+      </div>
+      </div>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           @if (Auth::user())
@@ -22,7 +31,8 @@
             @if (Auth::user())
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi {{ Auth::user()->name }}</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="wishlist.html">My profile</a>
+                <a class="dropdown-item" href="/profile">My profile</a>
+                <a class="dropdown-item" href="/my-blog">My recipe</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

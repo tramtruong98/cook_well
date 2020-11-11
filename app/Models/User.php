@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Followable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     /**
      * The attributes that are mass assignable.
@@ -42,10 +43,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function author(){
+    public function recipes(){
         return $this->hasMany('App\Models\Recipe');
+    }
+    public function posts(){
+        return $this->hasMany('App\Models\Post');
     }
     public function comments(){
         return $this->hasMany('App\Models\Comment');
+    }
+    public function timeline()
+    {
+        $friends = $this->follows()->pluck('id');
+
+        return Recipe::whereIn('user_id', $friends)
+            ->orWhere('user_id', $this->id)
+            ->withLikes()
+            ->orderByDesc('id')
+            ->paginate(50);
+    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

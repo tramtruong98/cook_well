@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 17/07/2019 12:38
+    Creation date: 31/10/2020 16:18
     */
 
     @font-face {
@@ -37,16 +37,18 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-shipped:before { content: "\f100"; }
-.flaticon-box:before { content: "\f101"; }
-.flaticon-award:before { content: "\f102"; }
-.flaticon-customer-service:before { content: "\f103"; }
-.flaticon-salad:before { content: "\f104"; }
-.flaticon-diet:before { content: "\f105"; }
+    .flaticon-coffee-cup:before { content: "\f100"; }
+.flaticon-woman:before { content: "\f101"; }
+.flaticon-cupcake:before { content: "\f102"; }
+.flaticon-salad:before { content: "\f103"; }
+.flaticon-cereal:before { content: "\f104"; }
+.flaticon-cheese:before { content: "\f105"; }
+.flaticon-wall-clock:before { content: "\f106"; }
     
-    $font-Flaticon-shipped: "\f100";
-    $font-Flaticon-box: "\f101";
-    $font-Flaticon-award: "\f102";
-    $font-Flaticon-customer-service: "\f103";
-    $font-Flaticon-salad: "\f104";
-    $font-Flaticon-diet: "\f105";
+    $font-Flaticon-coffee-cup: "\f100";
+    $font-Flaticon-woman: "\f101";
+    $font-Flaticon-cupcake: "\f102";
+    $font-Flaticon-salad: "\f103";
+    $font-Flaticon-cereal: "\f104";
+    $font-Flaticon-cheese: "\f105";
+    $font-Flaticon-wall-clock: "\f106";

@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::post('/import','App\Http\Controllers\RecipeController@import');
+Route::get('/', [App\Http\Controllers\PageController::class, 'index']);
+Route::post('/import', 'App\Http\Controllers\RecipeController@import');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/category/{id}', [App\Http\Controllers\HomeController::class, 'selectCategory']);
-Route::group(['prefix'=>'blog'],function(){
-    Route::get('','App\Http\Controllers\BlogController@index');
-    Route::get('/{id}','App\Http\Controllers\BlogController@showBlog');
-    Route::post('/post','App\Http\Controllers\BlogController@postBlog');
-}); 
+Route::get('/category/{id}', [App\Http\Controllers\PageController::class, 'selectCategory']);
+Route::group(['prefix' => 'blog'], function () {
+    Route::get('', 'App\Http\Controllers\BlogController@index')->name('blog');
+    Route::get('/{id}', 'App\Http\Controllers\BlogController@showBlog');
+    Route::post('/post', 'App\Http\Controllers\BlogController@postRecipe');
+    
+});
+Route::get('/my-blog', 'App\Http\Controllers\ProfileController@myBlog');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::post(
+    '/profiles/{id}/follow',
+    'FollowsController@store'
+)->name('follow');

@@ -9159,7 +9159,7 @@ h1, h2, h3, h4, h5,
         display: none; } }
 
 .form-control {
-  height: 52px !important;
+  height: 30px !important;
   background: #fff !important;
   color: #000000 !important;
   font-size: 18px;
@@ -9873,7 +9873,7 @@ textarea.form-control {
   color: #000000; }
 
 .sidebar-box {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   padding: 25px;
   font-size: 15px;
   width: 100%;
