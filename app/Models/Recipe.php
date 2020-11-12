@@ -18,14 +18,21 @@ class Recipe extends Model
         'description',
         'author',
     ];
-    public function post(){
-        return $this->hasOne('App\Models\Post');
+    public function post()
+    {
+        return $this->hasOne('App\Models\Post', 'recipe_id');
     }
-    public function course(){
+    public function course()
+    {
         return $this->belongsTo('App\Models\Course', 'course_id');
     }
-    public function author(){
+    public function author()
+    {
         return $this->belongsTo('App\Models\User', 'author');
     }
-    
+    public function getAuthor()
+    {
+        $author = User::where('id', $this->author)->first();
+        return $author->name;
+    }
 }

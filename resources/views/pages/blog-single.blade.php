@@ -78,75 +78,50 @@
                                 height="200">
                         </div>
                         <div class="desc align-self-md-center">
-                            <h3>{{ $author->name }}</h3>
+                            <a href="/{{ $author->id }}/blog"><h3>{{ $author->name }}</h3></a>
                             @auth
-                                {{-- @unless(Auth::user()
-                                    ->is($author)) --}}
-                                    <form method="POST" action="{{ route('follow', $author->name) }}">
+                                 @unless(Auth::user()
+                                    ->is($author)) 
+                                    <form method="POST" action="/profiles/{{ $author->id }}/follow">
                                         @csrf
-
                                         <button type="submit"
                                             class="btn btn-primary">
                                             {{ auth()->user()->following($author)
-                            ? 'Unfollow Me'
-                            : 'Follow Me' }}
+                                               ? 'Unfollow Me'
+                                               : 'Follow Me' }}
                                         </button>
                                     </form>
-                                {{-- @endunless --}}
+                                 @endunless
                             @endauth
                         </div>
                     </div>
 
 
                     <div class="pt-5 mt-5">
-                        <h3 class="mb-5">6 Comments</h3>
+                        <h3 class="mb-5">{{ $comments->count() }} Comments</h3>
                         <ul class="comment-list">
+                            @foreach ($comments as $comment)
                             <li class="comment">
                                 <div class="vcard bio">
-                                    <img src="{{ $author->avatar }}" alt="Image placeholder">
+                                    <img src="{{ $comment->user->avatar }}" alt="Image placeholder">
                                 </div>
                                 <div class="comment-body">
-                                    <h3>John Doe</h3>
+                                    <h3>{{ $comment->user->name }}</h3>
                                     <div class="meta">June 27, 2018 at 2:21pm</div>
-                                    <p><a href="#" class="reply">Reply</a></p>
+                                    <p>{{ $comment->content }}</p>
+                                    {{-- <p><a href="#" class="reply">Reply</a></p> --}}
                                 </div>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim
-                                        sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim
-                                        sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
+                            </li>   
+                            @endforeach
                         </ul>
                         <!-- END comment-list -->
-
+                        @auth
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="p-5 bg-light">
+                            <form action="/{{ $post->id }}/post-comment" class="p-5 bg-light" method="post">
+                                @csrf
                                 <div class="form-group">
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
@@ -154,6 +129,7 @@
 
                             </form>
                         </div>
+                        @endauth
                     </div>
                 </div> <!-- .col-md-8 -->
                 <div class="col-lg-4 sidebar ftco-animate">

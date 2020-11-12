@@ -79,7 +79,7 @@
                                     <div class="text d-block pl-md-4">
                                         <div class="meta mb-3">
                                             <div>July 20, 2019</a></div>
-                                            <div>Admin</a></div>
+                                            <div>{{ $recipe->author }}</a></div>
                                             <div><span class="flaticon-heart-shape-outline"></span> 3</a></div>
                                         </div>
                                         <h3 class="heading"><a href="#">{{ $recipe->course->name }}</a></h3>

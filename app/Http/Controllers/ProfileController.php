@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,12 @@ class ProfileController extends Controller
     public function myBlog()
     {
         //$posts = Post::where('author', Auth::user()->id);
-        $posts = Post::all();
-        return view('pages.my-blog', compact('posts'));
+        $recipes = Recipe::where('author', Auth::user()->id)->get();
+        return view('pages.my-blog', compact('recipes'));
     }
+    // public function update(Request $request)
+    // {
+        
+    // }
+
 }

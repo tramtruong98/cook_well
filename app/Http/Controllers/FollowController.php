@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class FollowController extends Controller
 {
 
-    public function store(User $user)
+    public function store($id)
     {
+        $user = User::where('id', $id)->first();
         Auth::user()->toggleFollow($user);
         return back();
     }

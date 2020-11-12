@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Post;
 use App\Models\Recipe;
@@ -22,11 +23,34 @@ class BlogController extends Controller
         $categories = Category::all();
         return view('pages.blog', compact('posts', 'categories'));
     }
+    public function showUserRecipe($id)
+    {
+        $recipes = Recipe::where('author', $id)->get();
+        return view('pages.user-recipes', compact('recipes'));
+    }
     public function showBlog($id)
     {
         $post = Post::where('id', $id)->first();
         $author = User::where('id', $post->recipe->author)->first();
-        return view('pages.blog-single', compact('post', 'author'));
+        $comments = Comment::where('post_id', $id)->get();
+        return view('pages.blog-single', compact('post', 'author', 'comments'));
+    }
+    public function postComment(Request $request, $id)
+    {
+        DB::beginTransaction();
+          try {
+        $comment = new Comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->post_id = $id;
+        $comment->content = $request->content;  
+        $comment->save();
+         DB::commit();
+         return redirect()->back();
+          } catch (\Exception $e) {
+              DB::rollback();
+             abort(500);
+        }
+
     }
     public function postRecipe(Request $request)
     {

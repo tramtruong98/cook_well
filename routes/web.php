@@ -25,10 +25,9 @@ Route::group(['prefix' => 'blog'], function () {
     Route::post('/post', 'App\Http\Controllers\BlogController@postRecipe');
     
 });
+Route::get('/{id}/blog', 'App\Http\Controllers\BlogController@showUserRecipe');
 Route::get('/my-blog', 'App\Http\Controllers\ProfileController@myBlog');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-Route::post(
-    '/profiles/{id}/follow',
-    'FollowsController@store'
-)->name('follow');
+Route::post('/profiles/{id}/follow','App\Http\Controllers\FollowController@store')->name('follow');
+Route::post('{id}/post-comment', 'App\Http\Controllers\BlogController@postComment');
