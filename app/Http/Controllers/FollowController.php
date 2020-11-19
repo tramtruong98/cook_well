@@ -13,7 +13,7 @@ class FollowController extends Controller
     public function store($id)
     {
         $user = User::where('id', $id)->first();
-        Auth::user()->toggleFollow($user);
-        return back();
+        $response = Auth::user()->toggleFollow($user);
+        return redirect()->back();
     }
 }

@@ -5,7 +5,7 @@
     <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
                         {{ $post->recipe->ingredients }}
                     </p>
                     <p>
-                        <img src="{{ $post->image }}" alt="" class="img-fluid">
+                        <img src="{{asset("img/products/$post->image")}}" alt="image" class="img-fluid">
                     </p>
                     <h2 class="mb-3 mt-5">#2. How to make this</h2>
                     <p>{{ $post->recipe->description }}</p>
@@ -74,8 +74,8 @@
 
                     <div class="about-author d-flex p-4 bg-light">
                         <div class="bio align-self-md-center mr-4">
-                            <img src="{{ $author->avatar }}" alt="Image placeholder" class="img-fluid mb-4" width="200"
-                                height="200">
+                            <img src="{{ $author->profile->avatar }}" alt="Image placeholder" class="img-fluid mb-4" width="100"
+                                height="100">
                         </div>
                         <div class="desc align-self-md-center">
                             <a href="/{{ $author->id }}/blog"><h3>{{ $author->name }}</h3></a>
@@ -86,9 +86,9 @@
                                         @csrf
                                         <button type="submit"
                                             class="btn btn-primary">
-                                            {{ auth()->user()->following($author)
-                                               ? 'Unfollow Me'
-                                               : 'Follow Me' }}
+                                            {{ Auth::user()->isFollowing($author)
+                                               ? 'Unfollow'
+                                               : 'Follow' }}
                                         </button>
                                     </form>
                                  @endunless
@@ -98,6 +98,14 @@
 
 
                     <div class="pt-5 mt-5">
+                        <span id = heart><i class="fa fa-heart-o fa-lg" aria-hidden="true" ></i>
+                            {{-- @if ($post->isLikedBy(Auth::user()))
+                                You and 
+                            @endif
+                            {{ $post->likers()->count() }} like this
+                             </span> --}}
+                        <br>
+                        <br>
                         <h3 class="mb-5">{{ $comments->count() }} Comments</h3>
                         <ul class="comment-list">
                             @foreach ($comments as $comment)
@@ -231,6 +239,7 @@
     </script>
     <script src="{{ asset('front/js/google-map.js') }}"></script>
     <script src="{{ asset('front/js/main.js') }}"></script>
+    <script src="{{ asset('js/blog-single.js') }}"></script>
 
 </body>
 

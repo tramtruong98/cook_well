@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Likable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Overtrue\LaravelLike\Traits\Likeable;
 
 class Post extends Model
 {
-    use HasFactory, Likable, Searchable;
+    use HasFactory, Likeable, Searchable;
     protected $table = 'posts';
     protected $fillable = [
         'recipe_id',
@@ -40,7 +40,10 @@ class Post extends Model
     {
         return $this->hasMany(Like::class);
     }
-
+    public function tag()
+    {
+        return $this->belongsTo('App\Models\Tag', 'tag_id');
+    }
     public function getRouteKeyName()
     {
         return 'recipe_id';

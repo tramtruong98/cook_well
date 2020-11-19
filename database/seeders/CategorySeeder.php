@@ -30,7 +30,7 @@ class CategorySeeder extends Seeder
             ],
 
             [
-                'name' => 'Vietnamese cuisines',
+                'name' => 'Vietnamese cuisine',
                 'description' => 'Courses from Vietnam originally',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

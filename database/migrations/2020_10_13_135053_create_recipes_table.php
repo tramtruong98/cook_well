@@ -21,7 +21,7 @@ class CreateRecipesTable extends Migration
             $table->integer('minutes');
             $table->text('ingredients')->nullable();
             $table->text('description')->nullable();
-            $table->integer('author')->nullable();
+            $table->unsignedBigInteger('author')->nullable();
             $table->timestamps();
             $table->foreign('cate_id')->references('id')->on('categories');
             $table->foreign('course_id')->references('id')->on('courses');

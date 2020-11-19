@@ -9546,7 +9546,15 @@ textarea.form-control {
     z-index: -1;
     opacity: .3;
     background: #fff; }
-
+    .fa-heart-o {
+      color: #82ae46;
+      cursor: pointer;
+    }
+    
+    .fa-heart {
+      color: #82ae46;
+      cursor: pointer;
+    }
 .ftco-counter {
   padding: 5em 0; }
   .ftco-counter .text strong.number {

@@ -73,8 +73,11 @@
                         @foreach ($recipes as $recipe)
                             <div class="col-md-12 d-flex ftco-animate">
                                 <div class="blog-entry align-self-stretch d-md-flex">
+                                    @php
+                                        $image = $recipe->post->image
+                                    @endphp
                                     <a href="/blog/{{ $recipe->post->id }}" class="block-20"
-                                        style="background-image: url('{{ $recipe->post->image }}');">
+                                        style="background-image: url({{ URL::asset("img/products/$image") }});">
                                     </a>
                                     <div class="text d-block pl-md-4">
                                         <div class="meta mb-3">

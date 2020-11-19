@@ -33,6 +33,7 @@ class BlogController extends Controller
         $post = Post::where('id', $id)->first();
         $author = User::where('id', $post->recipe->author)->first();
         $comments = Comment::where('post_id', $id)->get();
+        //$img = $post->image->substr()
         return view('pages.blog-single', compact('post', 'author', 'comments'));
     }
     public function postComment(Request $request, $id)
@@ -66,27 +67,29 @@ class BlogController extends Controller
         $course = new Course;
         $course->cate_id = $request->category;
         $course->name = $request->name;
+        $course->description = $request->title;
         $course->save();
         $recipe->course_id = $course->id;
         $recipe->title = $request->title;
         $recipe->cate_id = $request->category;
         $recipe->minutes = $request->minutes;
-        $recipe->description = $request->description;
         $recipe->ingredients = $request->ingredients;
+        $recipe->description = $request->description;
+        $recipe->author = Auth::user()->id;
         $recipe->save();
-        //$recipe->author = Auth::user()->id;
-        $post->recipe_id = 1;
+        $post->recipe_id = $recipe->id;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('img/products/' . $filename);
             // Image::make($image)->resize(300, 100)->save($location);
-            Image::make($request->file('image'))->resize(300, 200)->save($location);
-            $post->image = $location;
+            Image::make($request->file('image'))->resize(400, 300)->save($location);
+            $post->image = $filename;
         }
         $post->course_id = $recipe->course_id;
         $post->rate = 0;
         $post->cate_id = $request->category;
+        $post->tag_id = 1;
         $post->save();
          DB::commit();
          return redirect()->back();

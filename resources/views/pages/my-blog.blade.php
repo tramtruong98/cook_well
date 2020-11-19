@@ -74,7 +74,10 @@
                             <div class="col-md-12 d-flex ftco-animate">
                                 <div class="blog-entry align-self-stretch d-md-flex">
                                     <a href="/blog/{{ $recipe->post->id }}" class="block-20"
-                                        style="background-image: url('{{ $recipe->post->image }}');">
+                                        @php
+                                           $img = $recipe->post->image
+                                        @endphp
+                                        style="background-image: url('{{ URL::asset("img/products/$img") }}');">
                                     </a>
                                     <div class="text d-block pl-md-4">
                                         <div class="meta mb-3">

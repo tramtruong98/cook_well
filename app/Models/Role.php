@@ -13,4 +13,13 @@ class Role extends Model
         'role',
         'description',
     ];
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User')
+                        ->using('App\Models\UserRole')
+                        ->withPivot([
+                            'created_by',
+                            'updated_by',
+                        ]);
+    }
 }

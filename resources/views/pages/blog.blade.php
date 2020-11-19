@@ -76,7 +76,7 @@
                             <div class="col-md-12 d-flex ftco-animate">
                                 <div class="blog-entry align-self-stretch d-md-flex">
                                     <a href="/blog/{{ $post->id }}" class="block-20"
-                                        style="background-image: url('{{ $post->image }}');">
+                                        style="background-image: url({{ URL::asset("img/products/$post->image") }});">
                                     </a>
                                     <div class="text d-block pl-md-4">
                                         <div class="meta mb-3">
@@ -98,10 +98,9 @@
                     <div class="sidebar-box ftco-animate">
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
-                            <li><a href="#">Vegetables <span>(12)</span></a></li>
-                            <li><a href="#">Fruits <span>(22)</span></a></li>
-                            <li><a href="#">Juice <span>(37)</span></a></li>
-                            <li><a href="#">Dries <span>(42)</span></a></li>
+                            @foreach ($categories as $category)
+                            <li><a href="/category/{{ $category->id }}">{{ $category->name }} <span>(12)</span></a></li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -197,12 +196,12 @@
                                     </div>
                                     <label for="exampleFormControlTextarea1">List of ingredients</label>
                                     <div class="input-group">
-                                        <textarea class="form-control" id="ingredients"
+                                        <textarea class="form-control" id="ingredients" name="ingredients"
                                             rows="3"></textarea>
                                     </div>
                                     <label for="exampleFormControlTextarea1">How to make this?</label>
                                     <div class="input-group">
-                                        <textarea class="form-control" id="description"
+                                        <textarea class="form-control" id="description" name="description"
                                             rows="3"></textarea>
                                     </div>
                                      <div class="input-group">

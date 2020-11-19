@@ -46,7 +46,7 @@
 				@foreach ($posts as $post)
 				<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="/blog/{{ $post->id }}" class="img-prod"><img class="img-fluid" src="{{$post->image}}" alt="Colorlib Template">
+    					<a href="/blog/{{ $post->id }}" class="img-prod"><img class="img-fluid" src="{{asset("img/products/$post->image")}}" alt="Colorlib Template">
     						
     						<div class="overlay"></div>
     					</a>
