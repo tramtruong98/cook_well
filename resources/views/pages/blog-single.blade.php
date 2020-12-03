@@ -98,12 +98,14 @@
 
 
                     <div class="pt-5 mt-5">
+                        @auth
                         <span id = heart><i class="fa fa-heart-o fa-lg" aria-hidden="true" ></i>
                             {{-- @if ($post->isLikedBy(Auth::user()))
                                 You and 
                             @endif
-                            {{ $post->likers()->count() }} like this
-                             </span> --}}
+                            {{ $post->likers()->count() }} like this --}}
+                        </span> 
+                        @endauth
                         <br>
                         <br>
                         <h3 class="mb-5">{{ $comments->count() }} Comments</h3>

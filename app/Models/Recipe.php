@@ -26,6 +26,10 @@ class Recipe extends Model
     {
         return $this->belongsTo('App\Models\Course', 'course_id');
     }
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category', 'cate_id');
+    }
     public function author()
     {
         return $this->belongsTo('App\Models\User', 'author');

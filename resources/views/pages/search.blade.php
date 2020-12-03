@@ -29,29 +29,29 @@
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
   </head>
   <body class="goto-here">
-	@include('layouts.header')
-	@include('layouts.main')
-	<section class="ftco-section">
+    @include('layouts.header')
+
+    <section class="ftco-section">
     	<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Recommend for {{ Auth::user()->name }}</span>
-            <h2 class="mb-4">You may love</h2>
-            <p>Best recipes that may suitable for your taste</p>
+          	<span class="subheading">Our Recipes</span>
+            <h2 class="mb-4">Publised By Community</h2>
+            <p>Best recipes by own users</p>
           </div>
         </div>   		
     	</div>
     	<div class="container">
     		<div class="row">
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-					@foreach ($recipes as $recipe)
-					<div class="product">
-    					{{-- <a href="#" class="img-prod"><img class="img-fluid" src="{{$recipe->post->image}}" alt="Colorlib Template"> --}}
+				@foreach ($posts as $post)
+				<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a href="/blog/{{ $post->id }}" class="img-prod"><img class="img-fluid" src="{{asset("img/products/$post->image")}}" alt="Colorlib Template">
     						
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">{{ $recipe->title }}</a></h3>
+    						<h3><a href="/blog/{{ $post->id }}">{{ $post->course->name}}</a></h3>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -61,11 +61,11 @@
     						</div>
     					</div>
     				</div>
-					@endforeach
     			</div>
+				@endforeach
     		</div>
     	</div>
-    </section>  
+    </section>
     @include('layouts.footer')
     
   

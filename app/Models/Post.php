@@ -38,11 +38,10 @@ class Post extends Model
     }
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        return $this->hasMany('App\Models\Like');
     }
-    public function tag()
-    {
-        return $this->belongsTo('App\Models\Tag', 'tag_id');
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag', 'post_tag', 'post_id', 'tag_id');
     }
     public function getRouteKeyName()
     {
@@ -62,6 +61,7 @@ class Post extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
+        $author = $this->recipe->author;
 
         //$array = $this->transform($array);
 
@@ -72,7 +72,8 @@ class Post extends Model
         $array['recipe_minutes'] = $this->recipe->minutes;
         $array['recipe_ingredients'] = $this->recipe->ingredients;
         $array['recipe_description'] = $this->recipe->description;
-        //$array['author'] = $this->recipe->author->name;
+        $array['tag'] = $this->tag->title;
+        $array['author'] = $author;
 
         return $array;
     }

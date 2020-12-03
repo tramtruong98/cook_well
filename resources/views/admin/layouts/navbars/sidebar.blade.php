@@ -1,16 +1,16 @@
 <div class="logo">
-  <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+  <a href="/home" class="simple-text logo-normal">
+      {{ __('COOKWELL') }}
   </a>
 </div>
 <div class="sidebar-wrapper">
   <ul class="nav">
-      <li class="nav-item">
+      {{-- <li class="nav-item">
           <a class="nav-link" href="{{ route('dasboard') }}">
               <i class="material-icons">dashboard</i>
               <p>{{ __('Dashboard') }}</p>
           </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
           {{-- <a class="nav-link" data-toggle="collapse"
               href="#laravelExample" aria-expanded="true">
@@ -21,15 +21,8 @@
           </a> --}}
           <div class="collapse show" id="laravelExample">
               <ul class="nav">
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('profile.edit') }}">
-                          <span class="sidebar-mini"> UP </span>
-                          <span class="sidebar-normal">{{ __('User profile') }} </span>
-                      </a>
-                  </li>
                   <li class="nav-item active">
                       <a class="nav-link" href="{{ route('user.index') }}">
-                          <span class="sidebar-mini"> UM </span>
                           <span class="sidebar-normal"> {{ __('User Management') }} </span>
                       </a>
                   </li>
@@ -38,22 +31,34 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{{ route('course.index') }}">
-              <i class="material-icons">content_paste</i>
-              <p>{{ __('Table List') }}</p>
+              <i class="material-icons">food_bank</i>
+              <p>{{ __('Courses') }}</p>
           </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('post.index') }}">
+            <i class="material-icons">emoji_food_beverage</i>
+            <p>{{ __('Posts') }}</p>
+        </a>
+    </li>
+      <li class="nav-item">
           <a class="nav-link" href="{{ route('recipe.index') }}">
-              <i class="material-icons">library_books</i>
-              <p>{{ __('Typography') }}</p>
+              <i class="material-icons">cake</i>
+              <p>{{ __('Recipes') }}</p>
           </a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{{ route('tag.index') }}">
-              <i class="material-icons">bubble_chart</i>
-              <p>{{ __('Icons') }}</p>
+              <i class="material-icons">local_offer</i>
+              <p>{{ __('Tags') }}</p>
           </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('profile.update') }}">
+            <i class="material-icons">account_box</i>
+            <p>{{ __('User profile') }}</p>
+        </a>
+    </li>
       {{-- <li class="nav-item">
           <a class="nav-link" href="{{ route('map') }}">
               <i class="material-icons">location_ons</i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::get('/', [App\Http\Controllers\PageController::class, 'index']);
 Route::post('/import', 'App\Http\Controllers\RecipeController@import');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/search-posts', [App\Http\Controllers\SearchController::class, 'resultSearch'])->name('search');
 Route::get('/category/{id}', [App\Http\Controllers\PageController::class, 'selectCategory']);
 Route::group(['prefix' => 'blog'], function () {
     Route::get('', 'App\Http\Controllers\BlogController@index')->name('blog');
@@ -39,7 +41,7 @@ Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     Route::get('/tags','App\Http\Controllers\Admin\AdminController@showTags')->name('tag.index');
     Route::get('/courses','App\Http\Controllers\Admin\AdminController@showCourses')->name('course.index');
     Route::get('/users','App\Http\Controllers\Admin\AdminController@showUsers')->name('user.index');
-    Route::get('/edit','App\Http\Controllers\Admin\AdminController@editProfile')->name('profile.edit');
+    Route::get('/edit','App\Http\Controllers\Admin\AdminController@editProfile')->name('profile.update');
 });
 Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     Route::get('/recipe/create','App\Http\Controllers\Admin\RecipeController@create');
@@ -74,5 +76,5 @@ Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     Route::post('/user/store','App\Http\Controllers\Admin\UserController@store');
     Route::get('/user/edit','App\Http\Controllers\Admin\UserController@edit');
     Route::post('/user/update','App\Http\Controllers\Admin\UserController@update');
-    Route::delete('/user/delete','App\Http\Controllers\Admin\UserseController@destroy');
+    Route::delete('/user/delete/{id}','App\Http\Controllers\Admin\UserController@destroy');
 });

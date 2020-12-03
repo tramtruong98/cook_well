@@ -16,14 +16,12 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('recipe_id');
-            $table->unsignedBigInteger('tag_id');
             $table->text('image')->nullable();
             $table->boolean('home_flag')->default(0);
             $table->boolean('blog_flag')->default(0);
             $table->integer('rate')->unsigned();
             $table->timestamps();
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
-            $table->foreign('tag_id')->references('id')->on('tags');
         });
     }
 

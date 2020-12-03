@@ -9,7 +9,7 @@
         <!-- Extra details for Live View on GitHub Pages -->
         <!-- Canonical SEO -->
         <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-laravel" />
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
         <!--  Social tags      -->
         <meta name="keywords"
@@ -118,7 +118,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <a href="#" class="btn btn-sm btn-primary">Add user</a>
+                                                <a href="#" type="submit" class="btn btn-sm btn-primary"  data-toggle="modal"  data-backdrop="static" data-keyboard="false" data-target="#userModal">Add a user</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -158,16 +158,20 @@
                                                             2020-02-24
                                                         </td>
                                                         <td class="td-actions text-right">
-                                                            <a rel="tooltip" class="btn btn-success btn-link" href="#"
+                                                            <a rel="tooltip" href="#"
                                                                 data-original-title="" title="">
+                                                                <button type="submit"  class="btn btn-success btn-link">
                                                                 <i class="material-icons">edit</i>
+                                                                </button>
                                                                 <div class="ripple-container"></div>
                                                             </a>
-                                                            <a rel="tooltip" class="btn btn-success btn-link" href="#"
-                                                                data-original-title="" title="">
-                                                                <i class="material-icons">edit</i>
-                                                                <div class="ripple-container"></div>
-                                                            </a>
+                                                            <form action="/admin/user/delete/{{ $user->id }}" method="POST">
+                                                                @csrf      
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-link">
+                                                                    <i class="material-icons">delete</i>
+                                                                </button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -181,6 +185,59 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal" id="userModal">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                      
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Create/Edit user</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <input type="text" value="" class="form-control" placeholder="Username">
+                            <input type="text" value="" class="form-control" placeholder="Email">
+                            <br>
+                            <div class="form-check-inline">
+                                <label class="form-check-label" for="radio1">
+                                  <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Female
+                                </label>
+                              </div>
+                              <div class="form-check-inline">
+                                <label class="form-check-label" for="radio2">
+                                  <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Male
+                                </label>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-check-inline">
+                                <label class="form-check-label" for="radio1">
+                                  <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option1" checked>Admin
+                                </label>
+                              </div>
+                              <div class="form-check-inline">
+                                <label class="form-check-label" for="radio2">
+                                  <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option2">User
+                                </label>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> Is activated</label>
+                            </div>
+                             
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Save</button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
                 <footer class="footer">
                     <div class="container-fluid">
                         <nav class="float-left">
@@ -222,9 +279,6 @@
 
         <div class="fixed-plugin">
             <div class="dropdown show-dropdown">
-                <a href="#" data-toggle="dropdown">
-                    <i class="fa fa-cog fa-2x"> </i>
-                </a>
                 <ul class="dropdown-menu">
                     <li class="header-title"> Sidebar Filters</li>
                     <li class="adjustments-line">
@@ -345,6 +399,9 @@
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{ asset('assets/demo/demo.js') }}"></script>
         <script src="{{ asset('assets/js/settings.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
             // Facebook Pixel Code Don't Delete
             ! function(f, b, e, v, n, t, s) {

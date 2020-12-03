@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -40,6 +41,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('/admin/home')->with('success', 'Student deleted successfully');
     }
 }

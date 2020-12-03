@@ -24,7 +24,7 @@ class CreateRecipesTable extends Migration
             $table->unsignedBigInteger('author')->nullable();
             $table->timestamps();
             $table->foreign('cate_id')->references('id')->on('categories');
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 

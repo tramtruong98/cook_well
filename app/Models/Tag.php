@@ -13,7 +13,13 @@ class Tag extends Model
         'tag',
         'title',
     ];
-    public function posts(){
-        return $this->hasMany('App\Models\Post');
+    public function posts()
+    {
+        return $this->belongsToMany('App\Models\Post')
+                        ->using('App\Models\PostTag')
+                        ->withPivot([
+                            'created_by',
+                            'updated_by',
+                        ]);
     }
 }
