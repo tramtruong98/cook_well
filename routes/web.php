@@ -22,6 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/search-posts', [App\Http\Controllers\SearchController::class, 'resultSearch'])->name('search');
 Route::get('/category/{id}', [App\Http\Controllers\PageController::class, 'selectCategory']);
 Route::group(['prefix' => 'blog'], function () {
+    Route::get('/like', 'App\Http\Controllers\BlogController@likePost')->name('like');
     Route::get('', 'App\Http\Controllers\BlogController@index')->name('blog');
     Route::get('/{id}', 'App\Http\Controllers\BlogController@showBlog');
     Route::post('/post', 'App\Http\Controllers\BlogController@postRecipe');
@@ -72,9 +73,9 @@ Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     Route::delete('/course/delete','App\Http\Controllers\Admin\CourseController@destroy');
 });
 Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
-    Route::get('/user/create','App\Http\Controllers\Admin\UserController@create');
+    //Route::get('/user/create','App\Http\Controllers\Admin\UserController@create');
     Route::post('/user/store','App\Http\Controllers\Admin\UserController@store');
-    Route::get('/user/edit','App\Http\Controllers\Admin\UserController@edit');
-    Route::post('/user/update','App\Http\Controllers\Admin\UserController@update');
+    Route::get('/user/edit/{id}','App\Http\Controllers\Admin\UserController@edit');
+    //Route::post('/user/update','App\Http\Controllers\Admin\UserController@update');
     Route::delete('/user/delete/{id}','App\Http\Controllers\Admin\UserController@destroy');
 });

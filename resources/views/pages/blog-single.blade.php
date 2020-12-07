@@ -97,9 +97,9 @@
                     </div>
 
 
-                    <div class="pt-5 mt-5">
+                    <div class="pt-5 mt-5" data-id="{{ $post->id }}">
                         @auth
-                        <span id = heart><i class="fa fa-heart-o fa-lg" aria-hidden="true" ></i>
+                        <span id = "heart"><i class="fa fa-heart-o fa-lg" aria-hidden="true" ></i>
                             {{-- @if ($post->isLikedBy(Auth::user()))
                                 You and 
                             @endif

@@ -15,7 +15,6 @@ class Post extends Model
         'recipe_id',
         'home_flag',
         'blog_flag',
-        'rate',
         'cate_id',
         'course_id',
         'image',

@@ -46,7 +46,7 @@ class BlogController extends Controller
         $comment->content = $request->content;  
         $comment->save();
          DB::commit();
-         return redirect()->back();
+         return redirect()->back()->with('message', 'Create successfully!');
           } catch (\Exception $e) {
               DB::rollback();
              abort(500);
@@ -86,11 +86,11 @@ class BlogController extends Controller
             Image::make($request->file('image'))->resize(400, 300)->save($location);
             $post->image = $filename;
         }
+        //dd($post->image);
         $post->course_id = $recipe->course_id;
-        $post->rate = 0;
         $post->cate_id = $request->category;
-        $post->tag_id = 1;
         $post->save();
+        $post->tags()->attach(1);
          DB::commit();
          return redirect()->back();
           } catch (\Exception $e) {
@@ -98,5 +98,11 @@ class BlogController extends Controller
               DB::rollback();
              abort(500);
         }
+    }
+    public function likePost(Request $request)
+    {
+        $post = Post::where('id', $request->id)->first();
+        $response = Auth::user()->toggleLike($post);
+        return response()->json(['success'=>$response]);
     }
 }
