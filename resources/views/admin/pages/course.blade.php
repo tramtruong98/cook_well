@@ -129,7 +129,7 @@
                                                             ID
                                                         </th>
                                                         <th>
-                                                            Cate_ID
+                                                            Category 
                                                         </th>
                                                         <th>
                                                             Name
@@ -152,13 +152,13 @@
                                                             {{ $course->id }}
                                                         </td>
                                                         <td>
-                                                            {{ $course->cate_id }}
+                                                            {{ $course->category->name }}
                                                         </td>
                                                         <td>
                                                             {{ $course->name }}
                                                         </td>
                                                         <td>
-                                                            {{ $course->description }}
+                                                          {{ \Illuminate\Support\Str::limit($course->description, $limit = 10, $end = '...') }}
                                                         </td>
                                                         <td>
                                                             2020-02-24
@@ -167,6 +167,11 @@
                                                             <a rel="tooltip" class="btn btn-success btn-link" href="#"
                                                                 data-original-title="" title="">
                                                                 <i class="material-icons">edit</i>
+                                                                <div class="ripple-container"></div>
+                                                            </a>
+                                                            <a rel="tooltip" class="btn btn-danger btn-link" href="#"
+                                                                data-original-title="" title="">
+                                                                <i class="material-icons">delete</i>
                                                                 <div class="ripple-container"></div>
                                                             </a>
                                                         </td>

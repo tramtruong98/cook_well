@@ -16,11 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\PageController::class, 'index']);
-Route::post('/import', 'App\Http\Controllers\RecipeController@import');
+// Route::get('/', function () {
+//     return view('course');
+// });
+Route::post('/import', 'App\Http\Controllers\RecipeController@importPost');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/search-posts', [App\Http\Controllers\SearchController::class, 'resultSearch'])->name('search');
 Route::get('/category/{id}', [App\Http\Controllers\PageController::class, 'selectCategory']);
+Route::get('/tag/{id}', [App\Http\Controllers\PageController::class, 'selectTag']);
+Route::post('/post/delete/{id}', [App\Http\Controllers\ProfileController::class, 'deleteBlog']);
 Route::group(['prefix' => 'blog'], function () {
     Route::get('/like', 'App\Http\Controllers\BlogController@likePost')->name('like');
     Route::get('', 'App\Http\Controllers\BlogController@index')->name('blog');

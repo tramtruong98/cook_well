@@ -35,7 +35,7 @@
     	<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">The recipes of {{ $category->name }}</span>
+          	<span class="subheading">The recipes are {{ $tag->tag }}</span>
             <h2 class="mb-4">Publised By Community</h2>
             <p>Best recipes by own users</p>
           </div>

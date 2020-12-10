@@ -112,13 +112,13 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Users</h4>
-                                        <p class="card-category"> Here you can manage users</p>
+                                        <h4 class="card-title ">Recipes</h4>
+                                        <p class="card-category"> Here you can manage recipes</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <a href="#" class="btn btn-sm btn-primary">Add user</a>
+                                                <a href="#" class="btn btn-sm btn-primary">Add recipe</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -129,11 +129,11 @@
                                                             ID
                                                         </th>
                                                         <th>
-                                                            Course_ID
+                                                            Course
                                                         </th>
-                                                        <th>
+                                                        {{-- <th>
                                                             Tittle
-                                                        </th>
+                                                        </th> --}}
                                                         <th>
                                                             Minutes
                                                         </th>
@@ -143,9 +143,9 @@
                                                         <th>
                                                             Description
                                                         </th>
-                                                        <th>
+                                                        {{-- <th>
                                                             Author
-                                                        </th>
+                                                        </th> --}}
                                                         <th>
                                                             Creation date
                                                         </th>
@@ -162,30 +162,35 @@
                                                             {{ $recipe->id }}
                                                         </td>
                                                         <td>
-                                                            {{ $recipe->course_id }}
+                                                            {{ $recipe->course->name }}
                                                         </td>
-                                                        <td>
-                                                            {{ $recipe->title }}
-                                                        </td>
+                                                        {{-- <td>
+                                                            {{ \Illuminate\Support\Str::limit($recipe->title, $limit = 50, $end = '...') }}
+                                                        </td> --}}
                                                         <td>
                                                             {{ $recipe->minutes }}
                                                         </td>
                                                         <td>
-                                                            {{ $recipe->ingredients }}
+                                                            {{ \Illuminate\Support\Str::limit($recipe->ingredients, $limit = 10, $end = '...') }}
                                                         </td>
                                                         <td>
-                                                            {{ $recipe->description }}
+                                                            {{ \Illuminate\Support\Str::limit($recipe->description, $limit = 10, $end = '...') }}
                                                         </td>
-                                                        <td>
+                                                        {{-- <td>
                                                             {{ $recipe->author}}
-                                                        </td>
+                                                        </td> --}}
                                                         <td>
-                                                            2020-02-24
+                                                            {{ $recipe->created_at->format('d M Y') }}
                                                         </td>
                                                         <td class="td-actions text-right">
                                                             <a rel="tooltip" class="btn btn-success btn-link" href="#"
                                                                 data-original-title="" title="">
                                                                 <i class="material-icons">edit</i>
+                                                                <div class="ripple-container"></div>
+                                                            </a>
+                                                            <a rel="tooltip" class="btn btn-danger btn-link" href="#"
+                                                                data-original-title="" title="">
+                                                                <i class="material-icons">delete</i>
                                                                 <div class="ripple-container"></div>
                                                             </a>
                                                         </td>
@@ -243,7 +248,7 @@
         <div class="fixed-plugin">
             <div class="dropdown show-dropdown">
                 <ul class="dropdown-menu">
-                    <li class="header-title"> Sidebar Filters</li>
+                    <li class="header-title"></li>
                     <li class="adjustments-line">
                         <a href="javascript:void(0)" class="switch-trigger active-color">
                             <div class="badge-colors ml-auto mr-auto">

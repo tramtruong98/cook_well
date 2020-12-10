@@ -27,7 +27,7 @@ class RecipeImport implements ToModel, WithHeadingRow
             'title' => $row['description'],
             'minutes' => $row['minutes'],
             'ingredients' => $row['ingredients'],
-            'description' => $row['steps'],
+            'description' => $row['description'],
         ]);
     }
 }

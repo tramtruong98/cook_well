@@ -7,6 +7,8 @@ use App\Models\Post;
 use App\Models\Recipe;
 use App\Recommender\RecipeSimilarity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -30,9 +32,19 @@ class HomeController extends Controller
         $categories = Category::all();
         $posts = Post::all();
         $recipes = Recipe::all();
-        //dd($recipes);
-        
-        $selectedId      = intval(app('request')->input('id') ?? '5');
+        foreach ($posts as $post)
+        {
+            if(Auth::user()->hasLiked($post))
+            {
+                $id = $post->recipe->id;
+            }
+        }
+        if ($id == 0) 
+        {
+            $id = $recipes->random()->first()->id;
+        }
+        //dd($id);
+        $selectedId      = $id;
         //dd($selectedId);
     
         $selectedRecipe = $recipes[0];
@@ -45,14 +57,12 @@ class HomeController extends Controller
         {
             return $recipe->id == $selectedId;
         });
+        //dd($selectedRecipes);
         if (count($selectedRecipes)) {
     
             $selectedRecipe = $selectedRecipes[array_keys($selectedRecipes->toArray())[0]];
     
         }
-    
-    
-    
         $recipesimilarity = new RecipeSimilarity($recipes->toArray());
     
         $similarityMatrix  = $recipesimilarity->calculateSimilarityMatrix();

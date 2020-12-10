@@ -28,17 +28,17 @@
                     <form action="/profile/update" method="POST">
                         @csrf
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value="{{ Auth::user()->name }}"></div>
-                            <div class="col-md-6"><label class="labels">Email</label><input type="text" class="form-control" value="{{ Auth::user()->email }}" placeholder="your email"></div>
+                            <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" id="name" name="name" placeholder="first name" value="{{ Auth::user()->name }}" required></div>
+                            <div class="col-md-6"><label class="labels">Email</label><input type="text" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" placeholder="your email" required></div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Manifesto</label><textarea type="text" class="form-control" placeholder="enter your manifesto of cooking">{{ Auth::user()->profile->manifesto }}</textarea></div>
+                            <div class="col-md-12"><label class="labels">Manifesto</label><textarea type="text" class="form-control" id="manifesto" name="manifesto" placeholder="enter your manifesto of cooking">{{ Auth::user()->profile->manifesto }}</textarea></div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"><label class="labels">Current password</label><input type="password" class="form-control" placeholder="" value=""></div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">New password</label><input type="password" class="form-control" placeholder="" value=""></div>
+                            <div class="col-md-12"><label class="labels">New password</label><input type="password" id="new" name = "new" class="form-control" placeholder="" value=""></div>
                         </div>
                         <div class="file-upload">
                             <div class="image-upload-wrap">

@@ -18,8 +18,8 @@ class Role extends Model
         return $this->belongsToMany('App\Models\User')
                         ->using('App\Models\UserRole')
                         ->withPivot([
-                            'created_by',
-                            'updated_by',
+                            'created_at',
+                            'updated_at',
                         ]);
     }
 }

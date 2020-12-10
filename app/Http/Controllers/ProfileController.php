@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Recipe;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,9 @@ class ProfileController extends Controller
     {
         //$posts = Post::where('author', Auth::user()->id);
         $recipes = Recipe::where('author', Auth::user()->id)->get();
-        return view('pages.my-blog', compact('recipes'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('pages.my-blog', compact('recipes', 'categories', 'tags'));
     }
     public function update(Request $request)
     {
@@ -30,7 +34,7 @@ class ProfileController extends Controller
             $profile = $user->profile;
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = bcrypt($request->new_password);
+            $user->password = bcrypt($request->new);
             $profile->manifesto = $request->manifesto;
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
@@ -45,8 +49,17 @@ class ProfileController extends Controller
             DB::commit();
             return redirect()->back();
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             abort(500);
         }
+    }
+    public function deleteBlog($id)
+    { 
+        $post = Post::where('id', $id)->first();
+        $idRecipe = $post->recipe->id;
+        Post::destroy($id);
+        Recipe::destroy($idRecipe);
+        return redirect('/my-blog')->with('success', 'Post deleted successfully');
     }
 }

@@ -66,10 +66,10 @@ class User extends Authenticatable
             ->orderByDesc('id')
             ->paginate(50);
     }
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
+    // public function likes()
+    // {
+    //     return $this->hasMany(Like::class);
+    // }
     public function profile()
     {
         return $this->hasOne('App\Models\Profile', 'user_id');

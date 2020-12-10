@@ -101,9 +101,9 @@
                         <h3><a href="/blog/{{ $post->id }}">{{ $post->course->name }}</a></h3>
                         <div class="bottom-area d-flex px-3">
                             <div class="m-auto d-flex">
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                {{-- <a href="/blog/like/{{ $post->id }}" class="heart d-flex justify-content-center align-items-center ">
                                     <span><i class="ion-ios-heart"></i></span>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>

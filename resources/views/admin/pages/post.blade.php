@@ -112,13 +112,13 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Users</h4>
-                                        <p class="card-category"> Here you can manage users</p>
+                                        <h4 class="card-title ">Posts</h4>
+                                        <p class="card-category"> Here you can manage posts</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <a href="#" class="btn btn-sm btn-primary">Add user</a>
+                                                <a href="#" class="btn btn-sm btn-primary">Add post</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -129,7 +129,7 @@
                                                             ID
                                                         </th>
                                                         <th>
-                                                            Recipe_ID
+                                                            Course
                                                         </th>
                                                         <th>
                                                             Tag
@@ -146,15 +146,22 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($posts as $post)
                                                     <tr>
                                                         <td>
-                                                            Admin Admin
+                                                            {{ $post->id }}
                                                         </td>
                                                         <td>
-                                                            admin@material.com
+                                                            {{ $post->course->name }}
                                                         </td>
                                                         <td>
-                                                            2020-02-24
+                                                            {{ $post->tag }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $post->image }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $post->created_at->format('d M Y') }}
                                                         </td>
                                                         <td class="td-actions text-right">
                                                             <a rel="tooltip" class="btn btn-success btn-link" href="#"
@@ -162,8 +169,14 @@
                                                                 <i class="material-icons">edit</i>
                                                                 <div class="ripple-container"></div>
                                                             </a>
+                                                            <a rel="tooltip" class="btn btn-danger btn-link" href="#"
+                                                                data-original-title="" title="">
+                                                                <i class="material-icons">delete</i>
+                                                                <div class="ripple-container"></div>
+                                                            </a>
                                                         </td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

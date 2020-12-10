@@ -41,17 +41,20 @@
           </div>
         </div>   		
     	</div>
-    	<div class="container">
+    	{{-- <div class="container">
     		<div class="row">
+          @foreach ($recipes as $recipe)
     			<div class="col-md-6 col-lg-3 ftco-animate">
-					@foreach ($recipes as $recipe)
 					<div class="product">
-    					{{-- <a href="#" class="img-prod"><img class="img-fluid" src="{{$recipe->post->image}}" alt="Colorlib Template"> --}}
+            @php
+                $picture = $recipe->post->image
+            @endphp
+    					<a href="#" class="img-prod"><img class="img-fluid" src="{{asset("img/products/$picture")}}" alt="Colorlib Template">
     						
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">{{ $recipe->title }}</a></h3>
+    						<h3><a href="#">{{ $recipe->course->name }}</a></h3>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -61,10 +64,38 @@
     						</div>
     					</div>
     				</div>
-					@endforeach
     			</div>
-    		</div>
-    	</div>
+        </div>
+        @endforeach
+      </div> --}}
+      <div class="container">
+        <div class="row">
+            @foreach ($recipes as $recipe)
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                  @php
+                      $picture = $recipe->post->image
+                  @endphp
+                    <a href="/blog/{{ $recipe->post->id }}" class="img-prod"><img class="img-fluid" src="{{asset("img/products/$picture")}}" alt="Colorlib Template">
+                        
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="/blog/{{ $recipe->post->id }}">{{ $recipe->course->name }}</a></h3>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                {{-- <a href="/blog/like/{{ $recipe->post->id }}" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            @endforeach
+        </div>
+    </div>
+      
     </section>  
     @include('layouts.footer')
     

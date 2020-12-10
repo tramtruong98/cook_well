@@ -10,27 +10,26 @@
     <div class="row mb-5">
       <div class="col-md">
         <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2">Vegefoods</h2>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-          <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+          <h2 class="ftco-heading-2">CookWell</h2>
+          <p>Here you can share your own recipes</p>
+          {{-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
             <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
             <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
       <div class="col-md">
         <div class="ftco-footer-widget mb-4 ml-md-5">
           <h2 class="ftco-heading-2">Menu</h2>
           <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block">Shop</a></li>
-            <li><a href="#" class="py-2 d-block">About</a></li>
-            <li><a href="#" class="py-2 d-block">Journal</a></li>
-            <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+            <li><a href="/home" class="py-2 d-block">Shop</a></li>
+            <li><a href="/blog" class="py-2 d-block">About</a></li>
+            <li><a href="/about" class="py-2 d-block">Journal</a></li>
           </ul>
         </div>
       </div>
-      <div class="col-md-4">
+      {{-- <div class="col-md-4">
          <div class="ftco-footer-widget mb-4">
           <h2 class="ftco-heading-2">Help</h2>
           <div class="d-flex">
@@ -46,8 +45,8 @@
             </ul>
           </div>
         </div>
-      </div>
-      <div class="col-md">
+      </div> --}}
+      {{-- <div class="col-md">
         <div class="ftco-footer-widget mb-4">
           <h2 class="ftco-heading-2">Have a Questions?</h2>
           <div class="block-23 mb-3">
@@ -58,9 +57,9 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
-    <div class="row">
+    {{-- <div class="row">
       <div class="col-md-12 text-center">
 
         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -68,6 +67,6 @@
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </p>
       </div>
-    </div>
+    </div> --}}
   </div>
 </footer>

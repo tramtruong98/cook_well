@@ -53,12 +53,12 @@
               <p>{{ __('Tags') }}</p>
           </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{ route('profile.update') }}">
             <i class="material-icons">account_box</i>
             <p>{{ __('User profile') }}</p>
         </a>
-    </li>
+    </li> --}}
       {{-- <li class="nav-item">
           <a class="nav-link" href="{{ route('map') }}">
               <i class="material-icons">location_ons</i>

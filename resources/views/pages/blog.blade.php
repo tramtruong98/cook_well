@@ -80,8 +80,9 @@
                                     </a>
                                     <div class="text d-block pl-md-4">
                                         <div class="meta mb-3">
-                                            <div>July 20, 2019</a></div>
+                                            <div>{{ $post->created_at->format('d M Y') }}</a></div>
                                             <div>Admin</a></div>
+                                            {{-- <div>{{ $authors->where('id', $post->recipe->author)->get(['name']) ? $authors->where('id', $post->recipe->author)->first()->name : 'Admin'}}</a></div> --}}
                                             <div><span class="flaticon-heart-shape-outline"></span> 3</a></div>
                                         </div>
                                         <h3 class="heading"><a href="#">{{ $post->course->name }}</a></h3>
@@ -91,6 +92,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @php
+                                $latestID = $post->id;
+                            @endphp
                         @endforeach
                     </div>
                 </div> <!-- .col-md-8 -->
@@ -99,62 +103,37 @@
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
                             @foreach ($categories as $category)
-                            <li><a href="/category/{{ $category->id }}">{{ $category->name }} <span>(12)</span></a></li>
+                            <li><a href="/category/{{ $category->id }}">{{ $category->name }} <span>({{ $category->recipes->count() }})</span></a></li>
                             @endforeach
                         </ul>
                     </div>
 
                     <div class="sidebar-box ftco-animate">
                         <h3 class="heading">Recent Blog</h3>
+                        @php
+                            $list = $posts->where('id', '<=' , $latestID)->sortByDesc('id')->take(5);
+                        @endphp
+                        @foreach ($list as $item)
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                            <a class="blog-img mr-4" style="background-image: url({{ URL::asset("front/images/bg_1.jpg") }});"></a>
                             <div class="text">
-                                <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about
-                                        the blind texts</a></h3>
+                                <h3 class="heading-1"><a href="/blog/{{ $item->id }}">{{ $item->course->name }}</a></h3>
                                 <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
+                                    <div><a href="#"><span class="icon-calendar"></span> {{ $item->created_at->format('d M Y') }}</a></div>
                                     <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 3</a></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about
-                                        the blind texts</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
-                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about
-                                        the blind texts</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
-                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <div class="sidebar-box ftco-animate">
                         <h3 class="heading">Tag Cloud</h3>
                         <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">fruits</a>
-                            <a href="#" class="tag-cloud-link">tomatoe</a>
-                            <a href="#" class="tag-cloud-link">mango</a>
-                            <a href="#" class="tag-cloud-link">apple</a>
-                            <a href="#" class="tag-cloud-link">carrots</a>
-                            <a href="#" class="tag-cloud-link">orange</a>
-                            <a href="#" class="tag-cloud-link">pepper</a>
-                            <a href="#" class="tag-cloud-link">eggplant</a>
+                            @foreach ($tags as $tag)
+                            <a href="/tag/{{ $tag->id }}" class="tag-cloud-link">{{ $tag->tag }}</a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -186,6 +165,18 @@
                                                 </option>
                                                 @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="tag" id="tag">
+                                                <option disabled="disabled" selected="selected">Tag of your recipe
+                                                </option>
+                                                @foreach ($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
                                                 @endforeach
                                             </select>
                                             <div class="select-dropdown"></div>

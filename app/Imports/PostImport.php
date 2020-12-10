@@ -2,12 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Course;
+use App\Models\Post;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CourseImport implements ToModel, WithHeadingRow, WithBatchInserts
+class PostImport implements ToModel, WithHeadingRow, WithBatchInserts
 {
     /**
     * @param array $row
@@ -21,10 +21,13 @@ class CourseImport implements ToModel, WithHeadingRow, WithBatchInserts
 
     public function model(array $row)
     {
-        return new Course([
+        return new Post([
             'cate_id' => $row['cate_id'],
-            'name' => $row['name'],
-            'description' => $row['description'],
+            'course_id' => $row['course_id'],
+            'recipe_id' => $row['recipe_id'],
+            'image' => $row['picture'],
+            'home_flag' => true,
+            'blog_flag' => true,
         ]);
     }
     

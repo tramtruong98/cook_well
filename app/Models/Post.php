@@ -35,10 +35,10 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\Comment');
     }
-    public function likes()
-    {
-        return $this->hasMany('App\Models\Like');
-    }
+    // public function likes()
+    // {
+    //     return $this->hasMany('App\Models\Like');
+    // }
     public function tags() {
         return $this->belongsToMany('App\Models\Tag', 'post_tag', 'post_id', 'tag_id');
     }
@@ -71,7 +71,7 @@ class Post extends Model
         $array['recipe_minutes'] = $this->recipe->minutes;
         $array['recipe_ingredients'] = $this->recipe->ingredients;
         $array['recipe_description'] = $this->recipe->description;
-        $array['tag'] = $this->tag->title;
+        //$array['tag'] = $this->tag->title;
         $array['author'] = $author;
 
         return $array;

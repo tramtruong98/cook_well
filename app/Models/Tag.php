@@ -18,8 +18,8 @@ class Tag extends Model
         return $this->belongsToMany('App\Models\Post')
                         ->using('App\Models\PostTag')
                         ->withPivot([
-                            'created_by',
-                            'updated_by',
+                            'created_at',
+                            'updated_at',
                         ]);
     }
 }

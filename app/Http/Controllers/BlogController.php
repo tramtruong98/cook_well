@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Post;
 use App\Models\Recipe;
+use App\Models\Tag;
 use App\Models\User;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
@@ -20,8 +21,10 @@ class BlogController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $authors = User::all();
         $categories = Category::all();
-        return view('pages.blog', compact('posts', 'categories'));
+        $tags = Tag::all();
+        return view('pages.blog', compact('posts', 'categories', 'authors', 'tags'));
     }
     public function showUserRecipe($id)
     {
@@ -33,8 +36,10 @@ class BlogController extends Controller
         $post = Post::where('id', $id)->first();
         $author = User::where('id', $post->recipe->author)->first();
         $comments = Comment::where('post_id', $id)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
         //$img = $post->image->substr()
-        return view('pages.blog-single', compact('post', 'author', 'comments'));
+        return view('pages.blog-single', compact('post', 'author', 'comments', 'categories', 'tags'));
     }
     public function postComment(Request $request, $id)
     {
@@ -90,7 +95,7 @@ class BlogController extends Controller
         $post->course_id = $recipe->course_id;
         $post->cate_id = $request->category;
         $post->save();
-        $post->tags()->attach(1);
+        $post->tags()->attach($request->tag);
          DB::commit();
          return redirect()->back();
           } catch (\Exception $e) {

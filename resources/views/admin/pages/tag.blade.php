@@ -112,13 +112,13 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-header-primary">
-                                        <h4 class="card-title ">Users</h4>
-                                        <p class="card-category"> Here you can manage users</p>
+                                        <h4 class="card-title ">Tags</h4>
+                                        <p class="card-category"> Here you can manage tags</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <a href="#" class="btn btn-sm btn-primary">Add user</a>
+                                                <a href="#" class="btn btn-sm btn-primary">Add tag</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -126,10 +126,13 @@
                                                 <thead class=" text-primary">
                                                     <tr>
                                                         <th>
-                                                            Name
+                                                            ID
                                                         </th>
                                                         <th>
-                                                            Email
+                                                            Name of tag
+                                                        </th>
+                                                        <th>
+                                                            Title
                                                         </th>
                                                         <th>
                                                             Creation date
@@ -140,15 +143,19 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($tags as $tag)
                                                     <tr>
                                                         <td>
-                                                            Admin Admin
+                                                            {{ $tag->id }}
                                                         </td>
                                                         <td>
-                                                            admin@material.com
+                                                            {{ $tag->tag }}
                                                         </td>
                                                         <td>
-                                                            2020-02-24
+                                                            {{ $tag->title }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $tag->created_at->format('d M Y') }}
                                                         </td>
                                                         <td class="td-actions text-right">
                                                             <a rel="tooltip" class="btn btn-success btn-link" href="#"
@@ -156,8 +163,14 @@
                                                                 <i class="material-icons">edit</i>
                                                                 <div class="ripple-container"></div>
                                                             </a>
-                                                        </td>
+                                                            <a rel="tooltip" class="btn btn-danger btn-link" href="#"
+                                                                data-original-title="" title="">
+                                                                <i class="material-icons">delete</i>
+                                                                <div class="ripple-container"></div>
+                                                            </a>
+                                                        </td> 
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
