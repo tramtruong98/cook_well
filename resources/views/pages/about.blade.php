@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+    {{-- <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
@@ -264,7 +264,7 @@
           </div>
         </div>
 			</div>
-		</section>
+		</section> --}}
 
     @include('layouts.footer')
     

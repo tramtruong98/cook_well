@@ -6,8 +6,8 @@
         <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
           <div class="col-md-12 ftco-animate text-center">
-            <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+            <h1 class="mb-2">We are a community of cooker</h1>
+            <h2 class="subheading mb-4">Sharing cool recipes to each other</h2>
             {{-- <p><a href="#" class="btn btn-primary">View Details</a></p> --}}
           </div>
 
@@ -21,8 +21,8 @@
         <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
           <div class="col-sm-12 ftco-animate text-center">
-            <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+            <h1 class="mb-2">A lot of cool recipes</h1>
+            <h2 class="subheading mb-4">We bring these to you</h2>
             {{-- <p><a href="#" class="btn btn-primary">View Details</a></p> --}}
           </div>
 

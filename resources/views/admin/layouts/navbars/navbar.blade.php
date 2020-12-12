@@ -15,11 +15,14 @@
             <form class="navbar-form">
                 <span class="bmd-form-group">
                     <div class="input-group no-border">
-                        <input type="text" value="" class="form-control" placeholder="Search...">
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
+                        <form action="/admin/search" method="get" enctype="multipart/form-data">
+                            @csrf
+                            <input type="text" value="" id="searchAdmin" name="searchAdmin" class="form-control" placeholder="Search...">
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </form>
                     </div>
                 </span>
             </form>

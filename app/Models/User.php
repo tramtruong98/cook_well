@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Scout\Searchable;
 use Overtrue\LaravelFollow\Followable;
 use Overtrue\LaravelLike\Traits\Liker;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Followable, Liker;
+    use HasFactory, Notifiable, Followable, Liker, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -78,4 +79,32 @@ class User extends Authenticatable
     public function roles() {
         return $this->belongsToMany('App\Models\Role', 'user_role', 'user_id', 'role_id');
     }
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
+    public function getScoutKey()
+    {
+        return $this->id;
+    }
+
+    public function searchableAs()
+    {
+        return 'users_index';
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        //$array = $this->transform($array);
+
+        //$array['category'] = $this->category->name;
+        $array['name'] = $this->name;
+        $array['email'] = $this->email;
+
+        return $array;
+    }
+
 }

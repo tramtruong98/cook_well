@@ -62,9 +62,21 @@ class UserController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $user = User::where('id', $id)->first();
+            //dd($request->check);
+            $user->is_activated = $request->check;
+            $user->save();
+            DB::commit();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollback();
+            abort(500);
+        }
     }
 
     public function update(Request $request, $id)

@@ -1,11 +1,10 @@
-<<!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
         <!-- Extra details for Live View on GitHub Pages -->
         <!-- Canonical SEO -->
         <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-laravel" />
@@ -112,17 +111,17 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header card-header-primary">
-                                            <h4 class="card-title ">Users</h4>
-                                            <p class="card-category"> Here you can manage users</p>
+                                            <h4 class="card-title ">Search result</h4>
+                                            <p class="card-category"> Here you can see the searching result </p>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row">
+                                            {{-- <div class="row">
                                                 <div class="col-12 text-right">
                                                     <a href="#" type="submit" class="btn btn-sm btn-primary"
                                                         data-toggle="modal" data-backdrop="static" data-keyboard="false"
                                                         data-target="#userModal">Add a user</a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead class=" text-primary">
@@ -266,7 +265,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal" id="userModal">
+                    {{-- <div class="modal" id="userModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
 
@@ -324,7 +323,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <footer class="footer">
                         <div class="container-fluid">
                             <nav class="float-left">

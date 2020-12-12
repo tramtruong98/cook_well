@@ -48,6 +48,7 @@ Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     Route::get('/courses','App\Http\Controllers\Admin\AdminController@showCourses')->name('course.index');
     Route::get('/users','App\Http\Controllers\Admin\AdminController@showUsers')->name('user.index');
     Route::get('/edit','App\Http\Controllers\Admin\AdminController@editProfile')->name('profile.update');
+    Route::get('/search','App\Http\Controllers\Admin\SearchController@search')->name('admin.search');
 });
 Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     Route::get('/recipe/create','App\Http\Controllers\Admin\RecipeController@create');
@@ -80,7 +81,7 @@ Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
 Route::group(['prefix'=>'admin','middleware' => ['admin']], function () {
     //Route::get('/user/create','App\Http\Controllers\Admin\UserController@create');
     Route::post('/user/store','App\Http\Controllers\Admin\UserController@store');
-    Route::get('/user/edit/{id}','App\Http\Controllers\Admin\UserController@edit');
+    Route::post('/user/edit/{id}','App\Http\Controllers\Admin\UserController@edit');
     //Route::post('/user/update','App\Http\Controllers\Admin\UserController@update');
     Route::delete('/user/delete/{id}','App\Http\Controllers\Admin\UserController@destroy');
 });

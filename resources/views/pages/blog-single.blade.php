@@ -57,11 +57,13 @@
                 <div class="col-md-9 ftco-animate text-center">
                     <p class="breadcrumbs"><span class="mr-2"><a href="/home">Home</a></span> <span>Blog</span></p>
                     <h1 class="mb-0 bread">COOL RECIPE</h1>
+                    @auth
                     <p>@if(Auth::user()->is($author)) 
                         <a href="#" type="submit" class="btn btn-primary py-2 px-3" data-toggle="modal" data-backdrop="static"
                                                     data-keyboard="false" data-target="#myModalEdit">Edit this recipe</a>
                         @endif
                     </p>
+                    @endauth
                 </div>
             </div>
         </div>
