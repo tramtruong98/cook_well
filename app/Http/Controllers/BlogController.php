@@ -20,7 +20,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('course')->simplePaginate(16);
         $authors = User::all();
         $categories = Category::all();
         $tags = Tag::all();

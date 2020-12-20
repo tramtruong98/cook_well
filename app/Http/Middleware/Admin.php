@@ -21,9 +21,9 @@ class Admin
         {
             return $next($request);
         }
-        if (Auth::user()->is_activated == true)
-        {
-            return redirect('home');
-        }
+        // if (Auth::user()->is_activated == true)
+        // {
+        //     return redirect('home');
+        // }
     }
 }

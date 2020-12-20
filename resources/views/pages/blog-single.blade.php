@@ -101,7 +101,11 @@
                                 height="100">
                         </div>
                         <div class="desc align-self-md-center">
-                            <a href="/{{ $author->id }}/blog"><h3>{{ $author->name }}</h3></a>
+                            <a 
+                            @if (Auth::user()->isFollowing($author))
+                            href="/{{ $author->id }}/blog"
+                            @endif
+                            ><h3>{{ $author->name }}</h3></a>
                             @auth
                                  @unless(Auth::user()
                                     ->is($author)) 

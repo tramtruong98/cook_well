@@ -30,9 +30,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $posts = Post::all();
+        $listPosts = Post::all();
+        $posts = Post::with('course')->simplePaginate(16);
         $recipes = Recipe::all();
-        foreach ($posts as $post)
+        $id = 0;
+        foreach ($listPosts as $post)
         {
             if(Auth::user()->hasLiked($post))
             {

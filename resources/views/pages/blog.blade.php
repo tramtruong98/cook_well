@@ -97,6 +97,9 @@
                             @endphp
                         @endforeach
                     </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        {{$posts->links()}}
+                      </div>
                 </div> <!-- .col-md-8 -->
                 <div class="col-lg-4 sidebar ftco-animate">
                     <div class="sidebar-box ftco-animate">
@@ -115,7 +118,7 @@
                         @endphp
                         @foreach ($list as $item)
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url({{ URL::asset("front/images/bg_1.jpg") }});"></a>
+                            <a class="blog-img mr-4" style="background-image: url({{ URL::asset("img/products/$item->image") }});"></a>
                             <div class="text">
                                 <h3 class="heading-1"><a href="/blog/{{ $item->id }}">{{ $item->course->name }}</a></h3>
                                 <div class="meta">

@@ -22,7 +22,7 @@
           <div class="collapse show" id="laravelExample">
               <ul class="nav">
                   <li class="nav-item active">
-                      <a class="nav-link" href="{{ route('user.index') }}">
+                      <a class="nav-link" href="/admin/home">
                           <span class="sidebar-normal"> {{ __('User Management') }} </span>
                       </a>
                   </li>

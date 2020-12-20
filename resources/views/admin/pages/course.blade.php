@@ -118,7 +118,9 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <a href="#" class="btn btn-sm btn-primary">Add course</a>
+                                                <a href="#" type="submit" class="btn btn-sm btn-primary"
+                                                data-toggle="modal" data-backdrop="static" data-keyboard="false"
+                                                data-target="#courseModal">Add course</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -180,10 +182,50 @@
                                                     
                                                 </tbody>
                                             </table>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                {{$courses->links()}}
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="courseModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Create course</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <form method="POST" action="/admin/course/store" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <select class="form-control" id="course_category" name="course_category">
+                                          @foreach ($categories as $category)
+                                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                          @endforeach
+                                        </select>
+                                      </div>
+                                    <input type="text" id="course_name" name="course_name" class="form-control" placeholder="Name of course">
+                                    <br>
+                                    <div class="input-group">
+                                        <textarea class="form-control" id="course_description" name="course_description"
+                                            rows="3" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

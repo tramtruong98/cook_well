@@ -9,7 +9,7 @@ class RecipeSimilarity
 {
     protected $recipes       = [];
     protected $nameWeight  = 1;
-    protected $ingredientWeight    = 1;
+    protected $ingredientWeight    = 2;
     protected $categoryWeight = 1;
     protected $minuteHighRange = 1000;
 

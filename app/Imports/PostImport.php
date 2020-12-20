@@ -33,6 +33,6 @@ class PostImport implements ToModel, WithHeadingRow, WithBatchInserts
     
     public function batchSize(): int
     {
-        return 159;
+        return 51;
     }
 }

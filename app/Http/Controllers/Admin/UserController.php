@@ -68,7 +68,18 @@ class UserController extends Controller
         try {
             $user = User::where('id', $id)->first();
             //dd($request->check);
-            $user->is_activated = $request->check;
+            if($request->check)
+            {
+                $user->is_activated = $request->check;
+            }
+            if($request->role == "Admin")
+            {
+                $user->roles()->attach(1);
+            }
+            if($request->role == "User")
+            {
+                $user->roles()->attach(2);
+            }
             $user->save();
             DB::commit();
             return redirect()->back();

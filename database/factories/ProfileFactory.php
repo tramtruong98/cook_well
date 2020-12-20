@@ -23,7 +23,7 @@ class ProfileFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->unique()->numberBetween(1,100),
+            'user_id' => $this->faker->unique()->numberBetween(1,50),
             'avatar' => 'https://picsum.photos/530/591',
             'manifesto' => $this->faker->text,
             'gender' => (bool)rand(0,1),

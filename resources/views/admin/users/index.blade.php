@@ -128,6 +128,9 @@
                                                     <thead class=" text-primary">
                                                         <tr>
                                                             <th>
+                                                                ID
+                                                            </th>
+                                                            <th>
                                                                 Name
                                                             </th>
                                                             <th>
@@ -151,16 +154,26 @@
                                                         @foreach ($users as $user)
                                                             <tr>
                                                                 <td>
+                                                                    {{ $user->id }}
+                                                                </td>
+                                                                <td>
                                                                     {{ $user->name }}
                                                                 </td>
                                                                 <td>
                                                                     {{ $user->email }}
                                                                 </td>
                                                                 <td>
-                                                                    @if ($user->roles->first())
+                                                                    {{-- @if ($user->roles->first())
                                                                         Admin
                                                                     @else User
-                                                                    @endif           
+                                                                    @endif            --}}
+                                                                    <form action="/admin/user/edit/{{ $user->id }}" method="POST">
+                                                                        @csrf
+                                                                    <select class="form-control" id="role" name="role" onChange="this.form.submit()">
+                                                                        <option>User</option>
+                                                                        <option {{$user->roles->first()->role == 'admin'? "selected" : ""}}>Admin</option>
+                                                                      </select>
+                                                                    </form>
                                                                 </td>
                                                                 <td>
                                                                     <form action="/admin/user/edit/{{ $user->id }}" method="POST">
@@ -256,9 +269,11 @@
                                                                 </td> --}}
                                                             </tr>
                                                         @endforeach
-
                                                     </tbody>
                                                 </table>
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    {{$users->links()}}
+                                                  </div>
                                             </div>
                                         </div>
                                     </div>

@@ -56,6 +56,7 @@
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
             name='viewport' />
         <!--     Fonts and icons     -->
+        <link href="{{ asset('front/form/css/main.css') }}" rel="stylesheet" media="all">
         <link rel="stylesheet" type="text/css"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -118,7 +119,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <a href="#" class="btn btn-sm btn-primary">Add post</a>
+                                                <a href="#" type="submit" class="btn btn-primary" data-toggle="modal" data-backdrop="static"
+                                                data-keyboard="false" data-target="#postModal">Add post</a>
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -155,10 +157,15 @@
                                                             {{ $post->course->name }}
                                                         </td>
                                                         <td>
-                                                            {{ $post->tag }}
+                                                            @if ($post->tags)
+                                                            @foreach ($post->tags as $tag)
+                                                                {{$tag->tag}}, 
+                                                            @endforeach
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            {{ $post->image }}
+                                                            <img src="{{ asset("img/products/$post->image") }}"  alt="Image placeholder" class="img-fluid mb-4" width="100"
+                                                            height="100"/>
                                                         </td>
                                                         <td>
                                                             {{ $post->created_at->format('d M Y') }}
@@ -179,10 +186,90 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                {{$posts->links()}}
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="postModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Create post</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <form method="POST" action="/admin/recipe/store" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    {{-- <div class="form-group">
+                                        <select class="form-control" id="course_category" name="course_category">
+                                          @foreach ($categories as $category)
+                                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                          @endforeach
+                                        </select>
+                                      </div> --}}
+                                      <div class="form-group">
+                                        <select class="form-control" id="course_category" name="course_category">
+                                          @foreach ($categories as $category)
+                                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                          @endforeach
+                                        </select>
+                                      </div>
+                                    <input type="text" id="course_name" name="course_name" class="form-control" placeholder="Name of course">
+                                    <br>
+                                    <input type="number" id="recipe_minutes" name="recipe_minutes" class="form-control" placeholder="How long does it take?">
+                                    <div class="form-group">
+                                        <select class="form-control" id="course_category" name="course_category">
+                                          @foreach ($tags as $tag)
+                                          <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                                          @endforeach
+                                        </select>
+                                      </div>
+                                    <div class="input-group">
+                                        <textarea class="form-control" id="course_description" name="course_description"
+                                            rows="3" placeholder="List of ingredients"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <textarea class="form-control" id="course_description" name="course_description"
+                                            rows="3" placeholder="Description of making this"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <div class="file-upload">
+                                            <div class="image-upload-wrap">
+                                                <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                                    accept="image/*" name="post_image" id="post_image"/>
+                                                <div class="drag-text">
+                                                    <h3>Drag and drop a file or select add Image</h3>
+                                                </div>
+                                            </div>
+                                            <div class="file-upload-content">
+                                                <img class="file-upload-image" src="#" alt="your image" />
+                                                <div class="image-title-wrap">
+                                                    <button type="button" onclick="removeUpload()"
+                                                        class="remove-image">Remove <span class="image-title">Uploaded
+                                                            Image</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -347,6 +434,16 @@
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{ asset('assets/demo/demo.js') }}"></script>
         <script src="{{ asset('assets/js/settings.js') }}"></script>
+        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <!-- Jquery JS-->
+    <script src="{{ asset('front/form/vendor/jquery/jquery.min.js') }}"></script>
+    <!-- Vendor JS-->
+    <script src="{{ asset('front/form/vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('front/form/vendor/datepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('front/form/vendor/datepicker/daterangepicker.js') }}"></script>
+
+    <!-- Main JS-->
+    <script src="{{ asset('front/form/js/global.js') }}"></script>
         <script>
             // Facebook Pixel Code Don't Delete
             ! function(f, b, e, v, n, t, s) {
